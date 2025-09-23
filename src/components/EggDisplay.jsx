@@ -1,5 +1,4 @@
 import React from "react";
-import svgPath from "../assets/svg/svgPath";
 
 const EggDisplay = ({
   remaining_seconds,
@@ -30,9 +29,6 @@ const EggDisplay = ({
           is_final_countdown ? "final-countdown" : ""
         }`}
       >
-        <svg viewBox="0 0 32 32" width="100%" height="100%">
-          <g dangerouslySetInnerHTML={{ __html: svgPath }} />
-        </svg>
         <div className="yolk-wrapper">
           <div className="yolk" style={{ transform: `scale(${yolk_scale})` }} />
           <div className="time" aria-live="polite">
