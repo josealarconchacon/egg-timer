@@ -3,7 +3,7 @@ import EggTimer from "./components/EggTimer.jsx";
 
 const App = () => {
   const current_year = new Date().getFullYear();
-  const app_name = "Egg Timer";
+  const app_name = "Jose's Egg Timer";
 
   return (
     <div className="app-root">

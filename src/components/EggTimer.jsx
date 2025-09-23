@@ -75,7 +75,7 @@ const EggTimer = () => {
               <span className="section-icon">💧</span>
               <h4>Water Level</h4>
             </div>
-            <p>Water should cover eggs by ~1 inch (2.5 cm)</p>
+            <p>Water should cover eggs by 1 inch (2.5 cm)</p>
           </div>
 
           <div className="guide-section">
@@ -84,7 +84,8 @@ const EggTimer = () => {
               <h4>Egg Size</h4>
             </div>
             <p>
-              Large eggs are standard. Adjust ~1 minute for smaller/larger eggs
+              Large eggs are standard. Adjust 1 minute for smaller and larger
+              eggs
             </p>
           </div>
 
@@ -93,7 +94,9 @@ const EggTimer = () => {
               <span className="section-icon">🌡️</span>
               <h4>Temperature</h4>
             </div>
-            <p>Room-temp eggs cook slightly faster than fridge-cold eggs</p>
+            <p>
+              Room temperature eggs cook slightly faster than fridge cold eggs
+            </p>
           </div>
 
           <div className="guide-section">
