@@ -1,6 +1,6 @@
 # 🥚 Egg Timer
 
-A interactive egg timer built with React and Vite.
+A interactive egg timer built with React and Vite
 
 ![Tests](https://img.shields.io/badge/tests-82%20passed-brightgreen.svg)
 ![Coverage](https://img.shields.io/badge/coverage-64%25-yellow.svg)
