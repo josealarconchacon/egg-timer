@@ -1,7 +1,7 @@
+/* eslint-env node */
 /**
  * Update coverage thresholds based on current coverage
  */
-
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -21,6 +21,7 @@ function updateThresholds() {
       console.log(
         '❌ Coverage summary not found. Run "npm run test:coverage" first.'
       );
+      // eslint-disable-next-line no-undef
       process.exit(1);
     }
 
@@ -63,10 +64,12 @@ function updateThresholds() {
     console.log(`   Statements: ${Math.round(total.statements.pct)}%`);
   } catch (error) {
     console.error("❌ Error updating thresholds:", error.message);
+    // eslint-disable-next-line no-undef
     process.exit(1);
   }
 }
 
+// eslint-disable-next-line no-undef
 if (import.meta.url === `file://${process.argv[1]}`) {
   updateThresholds();
 }

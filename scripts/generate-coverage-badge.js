@@ -1,7 +1,7 @@
+/* eslint-env node */
 /**
  * Generate coverage badge
  */
-
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -25,12 +25,12 @@ function updateReadmeBadge(coverage) {
   const color = getCoverageColor(coveragePercentage);
 
   const badgeRegex =
-    /!\[Coverage\]\(https:\/\/img\.shields\.io\/badge\/coverage-[\d\.]+%25-\w+\.svg\)/;
+    /!\[Coverage\]\(https:\/\/img\.shields\.io\/badge\/coverage-[\d.]+%25-\w+\.svg\)/;
   const newBadge = `![Coverage](https://img.shields.io/badge/coverage-${coveragePercentage}%25-${color}.svg)`;
   readmeContent = readmeContent.replace(badgeRegex, newBadge);
 
   const coverageSectionRegex =
-    /Current test coverage:\s*\n- \*\*Statements\*\*: [\d\.]+%\s*\n- \*\*Branches\*\*: [\d\.]+%\s*\n- \*\*Functions\*\*: [\d\.]+%\s*\n- \*\*Lines\*\*: [\d\.]+%/;
+    /Current test coverage:\s*\n- \*\*Statements\*\*: [\d.]+%\s*\n- \*\*Branches\*\*: [\d.]+%\s*\n- \*\*Functions\*\*: [\d.]+%\s*\n- \*\*Lines\*\*: [\d.]+%/;
   const newCoverageSection = `Current test coverage:
 - **Statements**: ${Math.round(coverage.statements.pct)}%
 - **Branches**: ${Math.round(coverage.branches.pct)}%
@@ -58,6 +58,7 @@ function main() {
       console.log(
         '❌ Coverage summary not found. Run "npm run test:coverage" first.'
       );
+      // eslint-disable-next-line no-undef
       process.exit(1);
     }
 
@@ -65,11 +66,13 @@ function main() {
     updateReadmeBadge(coverageData.total);
   } catch (error) {
     console.error("❌ Error updating coverage badge:", error.message);
+    // eslint-disable-next-line no-undef
     process.exit(1);
   }
 }
 
 // run the script if called directly
+// eslint-disable-next-line no-undef
 if (import.meta.url === `file://${process.argv[1]}`) {
   main();
 }
