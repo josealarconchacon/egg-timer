@@ -5,12 +5,19 @@
   "type": "module",
   "scripts": {
     "test": "jest",
-    "test:coverage": "jest --coverage",
+    "test:coverage": "jest --coverage --watchAll=false",
     "test:watch": "jest --watch",
+    "test:ci": "jest --coverage --watchAll=false --ci",
+    "test:update-snapshots": "jest --updateSnapshot",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "lint:fix": "eslint . --fix",
+    "preview": "vite preview",
+    "coverage:open": "open coverage/lcov-report/index.html",
+    "coverage:report": "npm run test:coverage && npm run coverage:open",
+    "coverage:badge": "node scripts/generate-coverage-badge.js",
+    "coverage:update": "npm run test:coverage && npm run coverage:badge"
   },
   "dependencies": {
     "react": "^19.1.1",

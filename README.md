@@ -1,16 +1,53 @@
-# React + Vite
+# 🥚 Egg Timer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A interactive egg timer built with React and Vite.
 
-Currently, two official plugins are available:
+![Tests](https://img.shields.io/badge/tests-82%20passed-brightgreen.svg)
+![Coverage](https://img.shields.io/badge/coverage-64%25-yellow.svg)
+![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- **Precise Timing**: Accurate countdown timer for perfect eggs
+- **Interactive UI**: Beautiful, responsive design with smooth animations
+- **Fast Performance**: Built with Vite for lightning-fast development
+- **Responsive**: Works perfectly on desktop and mobile devices
 
-The React Compiler is not enabled on this template. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Testing
 
-## Expanding the ESLint configuration
+```bash
+# Run all tests
+npm test
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Run tests with coverage
+npm run test:coverage
+
+# Run tests in watch mode
+npm run test:watch
+```
+
+### Test Coverage
+
+Current test coverage:
+
+- **Statements**: 65%
+- **Branches**: 39%
+- **Functions**: 71%
+- **Lines**: 64%
+
+## 📁 Project Structure
+
+```
+src/
+├── components/          # React components
+│   ├── EggControl.jsx   # Timer control interface
+│   ├── EggDisplay.jsx   # Timer display
+│   ├── EggPressetButtons.jsx # Preset time buttons
+│   ├── EggSpinButton.jsx # Spin wheel for time selection
+│   └── EggTimer.jsx     # Main timer component
+├── tests/              # Test files
+└── App.jsx             # Main app component
+
+hooks/
+└── useEggTimer.jsx     # Custom timer hook
+```
