@@ -1,14 +1,12 @@
 /**
  * Generate coverage badge
- * Script reads the coverage summary and updates the badge in README.md
  */
 
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function getCoverageColor(percentage) {
   if (percentage >= 90) return "brightgreen";
@@ -26,14 +24,11 @@ function updateReadmeBadge(coverage) {
   const coveragePercentage = Math.round(coverage.lines.pct);
   const color = getCoverageColor(coveragePercentage);
 
-  // update the coverage badge
   const badgeRegex =
     /!\[Coverage\]\(https:\/\/img\.shields\.io\/badge\/coverage-[\d\.]+%25-\w+\.svg\)/;
   const newBadge = `![Coverage](https://img.shields.io/badge/coverage-${coveragePercentage}%25-${color}.svg)`;
-
   readmeContent = readmeContent.replace(badgeRegex, newBadge);
 
-  // update the coverage section
   const coverageSectionRegex =
     /Current test coverage:\s*\n- \*\*Statements\*\*: [\d\.]+%\s*\n- \*\*Branches\*\*: [\d\.]+%\s*\n- \*\*Functions\*\*: [\d\.]+%\s*\n- \*\*Lines\*\*: [\d\.]+%/;
   const newCoverageSection = `Current test coverage:
@@ -41,7 +36,6 @@ function updateReadmeBadge(coverage) {
 - **Branches**: ${Math.round(coverage.branches.pct)}%
 - **Functions**: ${Math.round(coverage.functions.pct)}%
 - **Lines**: ${Math.round(coverage.lines.pct)}%`;
-
   readmeContent = readmeContent.replace(
     coverageSectionRegex,
     newCoverageSection
@@ -68,9 +62,7 @@ function main() {
     }
 
     const coverageData = JSON.parse(fs.readFileSync(coveragePath, "utf8"));
-    const totalCoverage = coverageData.total;
-
-    updateReadmeBadge(totalCoverage);
+    updateReadmeBadge(coverageData.total);
   } catch (error) {
     console.error("❌ Error updating coverage badge:", error.message);
     process.exit(1);

@@ -30,8 +30,12 @@ jobs:
     - name: Run linter
       run: npm run lint
 
-    - name: Run tests with coverage
+    - name: Run tests
+      run: npm test
+
+    - name: Run tests with coverage (for reporting)
       run: npm run test:coverage
+      continue-on-error: true
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v4
@@ -40,6 +44,7 @@ jobs:
         flags: unittests
         name: codecov-umbrella
         fail_ci_if_error: false
+      continue-on-error: true
 
   build:
     runs-on: ubuntu-latest

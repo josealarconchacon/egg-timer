@@ -17,7 +17,8 @@
     "coverage:open": "open coverage/lcov-report/index.html",
     "coverage:report": "npm run test:coverage && npm run coverage:open",
     "coverage:badge": "node scripts/generate-coverage-badge.js",
-    "coverage:update": "npm run test:coverage && npm run coverage:badge"
+    "coverage:update": "npm run test:coverage && npm run coverage:badge",
+    "coverage:thresholds": "node scripts/update-coverage-thresholds.js"
   },
   "dependencies": {
     "react": "^19.1.1",

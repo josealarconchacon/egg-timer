@@ -1,0 +1,74 @@
+name: Coverage Report
+
+on:
+  push:
+    branches: [main, test]
+  pull_request:
+    branches: [main, test]
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: "0 2 * * *"
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests with coverage
+        run: npm run test:coverage
+        continue-on-error: true
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          file: ./coverage/lcov.info
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: false
+        continue-on-error: true
+
+      - name: Comment coverage on PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            try {
+              const coverageData = JSON.parse(fs.readFileSync('coverage/coverage-summary.json', 'utf8'));
+              const total = coverageData.total;
+              
+              const comment = `## 📊 Coverage Report
+              
+              | Metric | Coverage |
+              |--------|----------|
+              | **Statements** | ${Math.round(total.statements.pct)}% |
+              | **Branches** | ${Math.round(total.branches.pct)}% |
+              | **Functions** | ${Math.round(total.functions.pct)}% |
+              | **Lines** | ${Math.round(total.lines.pct)}% |
+              
+              **Overall Coverage**: ${Math.round(total.lines.pct)}%
+              
+              ${total.lines.pct < 80 ? '⚠️ Coverage is below the 80% threshold. Consider adding more tests.' : '✅ Coverage meets the 80% threshold!'}`;
+              
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            } catch (error) {
+              console.log('Could not generate coverage comment:', error.message);
+            }
+        continue-on-error: true

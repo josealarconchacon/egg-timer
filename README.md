@@ -29,7 +29,6 @@ npm run test:watch
 ### Test Coverage
 
 Current test coverage:
-
 - **Statements**: 65%
 - **Branches**: 39%
 - **Functions**: 71%
